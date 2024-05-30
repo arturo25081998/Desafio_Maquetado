@@ -1,0 +1,5 @@
+#Ignore all the files in the img folder
+/img/*.jpg
+/img/*.png
+/img/*.svg
+/css/style.css.map
