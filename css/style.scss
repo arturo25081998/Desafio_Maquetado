@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #d6d6d7;
+  background-color: rgb(245, 245, 245);
 }
 
 .img-logo {
@@ -63,6 +63,9 @@ body {
   &--image img {
     width: 32px;
     margin-right: 0.5rem;
+  }
+  &--comment {
+    background-color: rgb(245, 245, 245);
   }
   &--info {
     & a:first-child {
@@ -132,9 +135,11 @@ body {
 }
 
 .btn__special {
+  border: none;
   &:hover {
-    background-color: rgba(rgb(59, 73, 223), 0.1);
-    color: rgb(47, 58, 178);
+    background-color: rgba(rgb(59, 73, 223), 0.1) !important;
+    color: rgb(47, 58, 178) !important ;
+    border: none;
   }
 }
 .ml-1 {
@@ -142,4 +147,32 @@ body {
 }
 .mr-1 {
   margin-right: 1rem;
+}
+.mt-8 {
+  margin-top: 4rem;
+}
+
+.fs-7 {
+  font-size: 1.4rem;
+}
+
+.nav__search {
+  border: 1px solid #d6d6d7;
+  border-radius: 0.2rem;
+  & input[type="text"],
+  input[type="text"]:focus-visible {
+    border: none;
+    outline: none;
+    width: 400px;
+    max-width: 400px;
+  }
+  & a {
+    text-decoration: none;
+    color: #717171;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+  }
+  &:hover {
+    border: 2px solid rgb(47, 58, 178);
+  }
 }
