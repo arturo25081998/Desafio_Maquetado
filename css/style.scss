@@ -94,6 +94,17 @@ body {
       }
     }
   }
+  &--comment {
+    & a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      color: rgb(64, 64, 64);
+    }
+    & p {
+      font-size: 0.875rem;
+      font-weight: 200;
+    }
+  }
 }
 
 .btn-trend {
@@ -116,6 +127,9 @@ body {
     & a {
       width: 100%;
       text-align: left;
+      & label {
+        font-size: 0.875rem;
+      }
       &:hover {
         background-color: rgba(rgb(59, 73, 223), 0.1);
         color: rgb(47, 58, 178);
@@ -136,6 +150,7 @@ body {
 
 .btn__special {
   border: none;
+  padding: 0.4rem !important;
   &:hover {
     background-color: rgba(rgb(59, 73, 223), 0.1) !important;
     color: rgb(47, 58, 178) !important ;
@@ -149,11 +164,23 @@ body {
   margin-right: 1rem;
 }
 .mt-8 {
-  margin-top: 4rem;
+  margin-top: 4.3rem;
 }
 
 .fs-7 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+}
+
+.fs-8 {
+  font-size: 0.8rem;
+}
+
+.fs-9 {
+  font-size: 1rem;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .nav__search {
@@ -174,5 +201,17 @@ body {
   }
   &:hover {
     border: 2px solid rgb(47, 58, 178);
+  }
+}
+
+.card__post {
+  & img {
+    display: none;
+  }
+
+  &:first-child {
+    img {
+      display: block;
+    }
   }
 }
