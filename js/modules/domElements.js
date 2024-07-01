@@ -15,6 +15,10 @@ const createNavLiks = (isLogged, wrapperId) => {
     let logOutButton = document.createElement("button");
     logOutButton.classList.add(..."btn btn-outline-danger".split(" "));
     logOutButton.textContent = "Log Out";
+    logOutButton.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
+    });
 
     let userPicture = document.createElement("img");
     userPicture.setAttribute("src", "img/profile.jpg");
