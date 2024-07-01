@@ -11,6 +11,35 @@
     "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif;
 }
 
+.ml-1 {
+  margin-left: 1rem;
+}
+.mr-1 {
+  margin-right: 1rem;
+}
+.mt-8 {
+  margin-top: 4.3rem;
+}
+.mt-10 {
+  margin-top: 1rem;
+}
+
+.fs-7 {
+  font-size: 1.2rem;
+}
+
+.fs-8 {
+  font-size: 0.8rem;
+}
+
+.fs-9 {
+  font-size: 1rem;
+}
+
+.fs-10 {
+  font-size: 1.875rem;
+}
+
 body {
   background-color: rgb(245, 245, 245);
 }
@@ -157,35 +186,14 @@ body {
     border: none;
   }
 }
-.ml-1 {
-  margin-left: 1rem;
-}
-.mr-1 {
-  margin-right: 1rem;
-}
-.mt-8 {
-  margin-top: 4.3rem;
-}
-
-.fs-7 {
-  font-size: 1.2rem;
-}
-
-.fs-8 {
-  font-size: 0.8rem;
-}
-
-.fs-9 {
-  font-size: 1rem;
-}
 
 .text-justify {
   text-align: justify;
 }
 
 .nav__search {
-  border: 1px solid #d6d6d7;
-  border-radius: 0.2rem;
+  border: 2px solid #d6d6d7;
+  border-radius: 0.5rem;
   & input[type="text"],
   input[type="text"]:focus-visible {
     border: none;
@@ -205,13 +213,36 @@ body {
 }
 
 .card__post {
-  & img {
+  & .post-picture {
     display: none;
   }
 
   &:first-child {
-    img {
+    .post-picture {
       display: block;
+    }
+  }
+}
+
+.registration {
+  @media (min-width: 640px) {
+    margin: 0 auto;
+    width: 640px;
+    padding: 3rem;
+  }
+  & img {
+    height: 48px;
+    width: auto;
+  }
+  & .registration__socials {
+    & button {
+      height: 50px;
+      color: black;
+      border: rgb(212, 212, 212) solid 1px;
+      &:hover {
+        background-color: rgb(245, 245, 245);
+        color: black;
+      }
     }
   }
 }
