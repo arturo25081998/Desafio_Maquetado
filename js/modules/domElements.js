@@ -5,6 +5,7 @@ const createNavLiks = (isLogged, wrapperId) => {
     let postButton = document.createElement("a");
     postButton.classList.add(..."btn btn-outline-primary".split(" "));
     postButton.textContent = "Create post";
+    postButton.setAttribute("href", "createPost.html");
 
     let notificationButton = document.createElement("a");
     notificationButton.classList.add(
@@ -39,8 +40,7 @@ const createNavLiks = (isLogged, wrapperId) => {
   while (wrapper.firstChild) {
     wrapper.removeChild(wrapper.firstChild);
   }
-  console.log(navItems);
-
+  //console.log(navItems);
   navItems.forEach((item) => {
     wrapper.append(item);
   });

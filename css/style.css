@@ -11965,10 +11965,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-* {
-  font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "TeXGyreHerosCnBold", "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif;
-}
-
 .ml-1 {
   margin-left: 1rem;
 }
@@ -12181,4 +12177,14 @@ body {
 .registration .registration__socials button:hover {
   background-color: rgb(245, 245, 245);
   color: black;
+}
+
+.tools__wrapper {
+  background-color: #f9f9f9;
+}
+
+.form__addingPost input[type=text]:focus,
+.form__addingPost input[type=date]:focus,
+.form__addingPost textarea:focus {
+  box-shadow: none;
 }/*# sourceMappingURL=style.css.map */

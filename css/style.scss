@@ -3,14 +3,6 @@
 
 @import "bootstrap/bootstrap";
 
-* {
-  font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed",
-    "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed",
-    "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold",
-    "HelveticaNeue", "Helvetica Neue", "TeXGyreHerosCnBold", "Helvetica",
-    "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif;
-}
-
 .ml-1 {
   margin-left: 1rem;
 }
@@ -243,6 +235,19 @@ body {
         background-color: rgb(245, 245, 245);
         color: black;
       }
+    }
+  }
+}
+
+.tools__wrapper {
+  background-color: #f9f9f9;
+}
+.form__addingPost {
+  & input[type="text"],
+  input[type="date"],
+  textarea {
+    &:focus {
+      box-shadow: none;
     }
   }
 }

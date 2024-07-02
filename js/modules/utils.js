@@ -3,4 +3,11 @@ const isLogged = () => {
   return token ? true : false;
 };
 
-export { isLogged };
+const evaluateInput = (inputValue) => {
+  if (inputValue === undefined || inputValue === "") {
+    return false;
+  } else {
+    return true;
+  }
+};
+export { isLogged, evaluateInput };
