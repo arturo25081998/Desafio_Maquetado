@@ -16,7 +16,7 @@ const uploadPost = async (postObject) => {
     body: JSON.stringify(postObject),
   });
   let data = await response.json();
-  console.log(data);
+  //console.log(data);
   return data;
 };
 

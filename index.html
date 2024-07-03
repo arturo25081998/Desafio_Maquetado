@@ -80,7 +80,7 @@
                     ></path>
                   </svg>
                 </button>
-                <input type="text" name="" id="" />
+                <input type="text" name="search-Title" id="search-by-title" />
                 <a href="">
                   Powered by
                   <span>
@@ -961,14 +961,18 @@
         <!--Posts wrapper-->
         <div class="col-lg-7">
           <div class="d-flex gap-3 mb-2 justify-content-start">
-            <button class="btn btn__special fs-6">
-              <strong>Relevant</strong>
+            <button class="btn btn__special fs-6 button-filter" id="relevant">
+              Relevant
             </button>
-            <button class="btn btn__special fs-6">Latest</button>
-            <button class="btn btn__special fs-6">Top</button>
+            <button class="btn btn__special fs-6 button-filter" id="latest">
+              Latest
+            </button>
+            <button class="btn btn__special fs-6 button-filter" id="top">
+              Top
+            </button>
           </div>
-          <div class="publications-wrapper">
-            <div class="card card__post w-100">
+          <div class="publications-wrapper" id="posts-wrapper">
+            <div class="card card__post w-100 mb-4">
               <img
                 src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fivsygiubvfu4y1li5mu9.png"
                 class="card-img-top post-picture"
@@ -1010,7 +1014,7 @@
                 </div>
               </div>
             </div>
-            <div class="card card__post w-100 mt-4">
+            <div class="card card__post w-100">
               <img
                 src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fivsygiubvfu4y1li5mu9.png"
                 class="card-img-top post-picture"

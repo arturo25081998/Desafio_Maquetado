@@ -87,4 +87,61 @@ const createCardIsLogged = (isLogged, wrapperId) => {
   }
 };
 
-export { createNavLiks, createCardIsLogged };
+const createPostCard = (postObject) => {
+  let { content, date, image, reactions, tags, title } = postObject;
+
+  let divCard = document.createElement("div");
+  divCard.classList.add(..."card card__post w-100 mb-4".split(" "));
+
+  let postImage = document.createElement("img");
+  postImage.setAttribute("src", image);
+  postImage.classList.add(..."card-img-top post-picture".split(" "));
+
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
+
+  let postInfoWrapper = document.createElement("div");
+  postInfoWrapper.classList.add(..."user__wrapper d-flex".split(" "));
+
+  let userWrapperImage = document.createElement("div");
+  userWrapperImage.classList.add(..."user__wrapper--image".split(" "));
+
+  let creatorImage = document.createElement("img");
+  creatorImage.classList.add("rounded-circle");
+  creatorImage.setAttribute("src", "img/profile.jpg");
+
+  let userWrapperInfo = document.createElement("div");
+  userWrapperInfo.classList.add(
+    ..."user__wrapper--info d-flex flex-column".split(" ")
+  );
+
+  let creatorUser = document.createElement("a");
+  creatorUser.textContent = "Arturo Juarez";
+
+  let creationDate = document.createElement("a");
+  creationDate.textContent = date;
+
+  let postTitle = document.createElement("a");
+  postTitle.textContent = title;
+  postTitle.classList.add("fs-5");
+
+  let tagsWrapper = document.createElement("div");
+  tagsWrapper.classList.add(..."tendecys d-flex gap-2".split(" "));
+  tags.forEach((tag) => {
+    let tagItem = document.createElement("button");
+    tagItem.classList.add(..."btn btn-trend btn-sm".split(" "));
+    tagItem.textContent = `# ${tag}`;
+    tagsWrapper.append(tagItem);
+  });
+
+  userWrapperImage.append(creatorImage);
+  userWrapperInfo.append(creatorUser, creationDate, postTitle, tagsWrapper);
+  postInfoWrapper.append(userWrapperImage, userWrapperInfo);
+  cardBody.append(postInfoWrapper);
+  divCard.append(postImage, cardBody);
+
+  console.log(reactions);
+  return divCard;
+};
+
+export { createNavLiks, createCardIsLogged, createPostCard };
