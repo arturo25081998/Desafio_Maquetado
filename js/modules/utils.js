@@ -10,4 +10,13 @@ const evaluateInput = (inputValue) => {
     return true;
   }
 };
-export { isLogged, evaluateInput };
+const createReactions = () => {
+  let reactions = ["like", "unicorn", "Exploding head", "Raised hands", "fire"];
+  reactions = reactions.map((reaction) => ({
+    reaction: reaction,
+    quantity: Math.floor(Math.random() * 101),
+  }));
+  return reactions;
+};
+
+export { isLogged, evaluateInput, createReactions };

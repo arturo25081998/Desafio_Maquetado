@@ -1,5 +1,6 @@
-import { isLogged, evaluateInput } from "./modules/utils.js";
+import { isLogged, evaluateInput, createReactions } from "./modules/utils.js";
 import { createNavLiks } from "./modules/domElements.js";
+import { uploadPost } from "./modules/apiPosts.js";
 
 let postData = {};
 let postInfo = document.querySelectorAll(".post-info");
@@ -8,6 +9,10 @@ let tagInput = document.getElementById("tag-input");
 let uploadPostButton = document.getElementById("upload-boton");
 
 createNavLiks(alredyLogged, "nav-links-wrapper");
+
+if (!alredyLogged) {
+  window.location.href = "index.html";
+}
 
 postInfo.forEach((input) => {
   input.addEventListener("keyup", (event) => {
@@ -82,7 +87,10 @@ uploadPostButton.addEventListener("click", () => {
     evaluateInput(postData.date) &&
     evaluateInput(postData.tags)
   ) {
+    postData["reactions"] = createReactions();
     alert("Subir post");
+    uploadPost(postData);
+    //window.location.href = "index.html";
   } else {
     alert("Faltan campos");
   }
