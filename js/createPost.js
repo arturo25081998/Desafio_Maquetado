@@ -2,17 +2,26 @@ import { isLogged, evaluateInput, createReactions } from "./modules/utils.js";
 import { createNavLiks } from "./modules/domElements.js";
 import { uploadPost } from "./modules/apiPosts.js";
 
-let postData = {};
+let postData = {
+  relevant: true,
+};
 let postInfo = document.querySelectorAll(".post-info");
 let alredyLogged = isLogged();
 let tagInput = document.getElementById("tag-input");
 let uploadPostButton = document.getElementById("upload-boton");
+let relevantPostCheckbox = document.getElementById("relevant-post-checkbox");
 
 createNavLiks(alredyLogged, "nav-links-wrapper");
 
 if (!alredyLogged) {
   window.location.href = "index.html";
 }
+
+relevantPostCheckbox.addEventListener("change", (event) => {
+  event.target.checked
+    ? (postData["relevant"] = true)
+    : (postData["relevant"] = false);
+});
 
 postInfo.forEach((input) => {
   input.addEventListener("keyup", (event) => {
