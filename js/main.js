@@ -3,6 +3,8 @@ import {
   createNavLiks,
   createCardIsLogged,
   createPostCard,
+  createDiscussCard,
+  createPostDiscussion,
 } from "./modules/domElements.js";
 import { getAllPosts } from "./modules/apiPosts.js";
 
@@ -10,6 +12,7 @@ let alredyLogged = isLogged();
 let filterButtons = document.querySelectorAll(".button-filter");
 let postsArray = await getAllPosts();
 let inputSearch = document.getElementById("search-by-title");
+let tagsToDiscuss = ["css", "javascript", "html"];
 
 const addPostCards = (cardsWrapperId, postsArray) => {
   let cardsWrapper = document.getElementById(cardsWrapperId);
@@ -62,6 +65,29 @@ filterButtons.forEach((button) => {
   });
 });
 
+const createDiscussCards = (wrapperId, tags) => {
+  let cardsWrapper = document.getElementById(wrapperId);
+  while (cardsWrapper.firstChild) {
+    cardsWrapper.removeChild(cardsWrapper.firstChild);
+  }
+  tags.forEach((tag) => {
+    let discussCard = createDiscussCard(tag);
+    cardsWrapper.append(discussCard);
+    let listWrapperTag = document.getElementById(`discuss-${tag}`);
+    let postsWithTag = postsArray.filter((post) => post.tags.includes(tag));
+    postsWithTag = postsWithTag.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    //console.log(postsWithTag);
+    postsWithTag = postsWithTag.slice(0, 5);
+    postsWithTag.forEach((post) => {
+      let discussionPost = createPostDiscussion(post);
+      listWrapperTag.append(discussionPost);
+    });
+  });
+};
+
+createDiscussCards("discussion-tags", tagsToDiscuss);
 addPostCards("posts-wrapper", postsArray);
 createNavLiks(alredyLogged, "nav-links-wrapper");
 createCardIsLogged(alredyLogged, "login-Card-Wrapper");

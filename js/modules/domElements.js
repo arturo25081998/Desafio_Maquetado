@@ -140,8 +140,56 @@ const createPostCard = (postObject) => {
   cardBody.append(postInfoWrapper);
   divCard.append(postImage, cardBody);
 
-  console.log(reactions);
+  //console.log(reactions);
   return divCard;
 };
 
-export { createNavLiks, createCardIsLogged, createPostCard };
+const createDiscussCard = (tag) => {
+  let divCard = document.createElement("div");
+  divCard.classList.add(..."card w-100 mt-3".split(" "));
+
+  let cardList = document.createElement("ul");
+  cardList.classList.add(..."list-group list-group-flush".split(" "));
+  cardList.setAttribute("id", `discuss-${tag}`);
+
+  let itemTitle = document.createElement("li");
+  itemTitle.classList.add(..."list-group-item list__item--title".split(" "));
+
+  let title = document.createElement("h5");
+  title.textContent = `#${tag}`;
+
+  let text = document.createElement("p");
+  text.textContent = "Discussion threads targeting the whole community";
+
+  itemTitle.append(title, text);
+  cardList.append(itemTitle);
+  divCard.append(cardList);
+  //console.log(divCard);
+  return divCard;
+};
+
+const createPostDiscussion = (postObject) => {
+  let { content, title } = postObject;
+
+  let itemPost = document.createElement("li");
+  itemPost.classList.add(
+    ..."list-group-item list__item--post d-flex flex-column".split(" ")
+  );
+
+  let titleContainer = document.createElement("a");
+  titleContainer.textContent = title;
+
+  let comments = document.createElement("a");
+  comments.textContent = "20 comments";
+
+  itemPost.append(titleContainer, comments);
+  return itemPost;
+};
+
+export {
+  createNavLiks,
+  createCardIsLogged,
+  createPostCard,
+  createDiscussCard,
+  createPostDiscussion,
+};
