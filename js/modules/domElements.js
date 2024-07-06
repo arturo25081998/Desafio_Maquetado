@@ -88,10 +88,19 @@ const createCardIsLogged = (isLogged, wrapperId) => {
 };
 
 const createPostCard = (postObject) => {
-  let { content, date, image, reactions, tags, title } = postObject;
+  let { content, date, image, reactions, tags, title, key } = postObject;
+
+  let sumaReacciones = postObject.reactions.reduce(
+    (total, reaccion) => total + reaccion.quantity,
+    0
+  );
 
   let divCard = document.createElement("div");
   divCard.classList.add(..."card card__post w-100 mb-4".split(" "));
+
+  let postImageLink = document.createElement("a");
+  postImageLink.classList.add("text-decoration-none");
+  postImageLink.setAttribute("href", `post-detail.html?postKey=${key}`);
 
   let postImage = document.createElement("img");
   postImage.setAttribute("src", image);
@@ -122,6 +131,7 @@ const createPostCard = (postObject) => {
   creationDate.textContent = date;
 
   let postTitle = document.createElement("a");
+  postTitle.setAttribute("href", `post-detail.html?postKey=${key}`);
   postTitle.textContent = title;
   postTitle.classList.add("fs-5");
 
@@ -134,13 +144,66 @@ const createPostCard = (postObject) => {
     tagsWrapper.append(tagItem);
   });
 
+  let reactionsCommentsWrapper = document.createElement("div");
+  reactionsCommentsWrapper.classList.add(
+    ..."reactions__wrapper mt-2 d-flex mb-3 w-100 gap-3".split(" ")
+  );
+
+  let reactionsWrapper = document.createElement("div");
+  reactionsWrapper.classList.add(
+    ..."ractions__wrapper--reaction d-flex align-items-center".split(" ")
+  );
+
+  let iconLike = document.createElement("img");
+  let iconUnicorn = document.createElement("img");
+  let iconExploading = document.createElement("img");
+  let iconRaised = document.createElement("img");
+  let iconFire = document.createElement("img");
+  let reactionsNumber = document.createElement("a");
+  reactionsNumber.classList.add("text-decoration-none");
+  reactionsNumber.textContent = `${sumaReacciones} reactions`;
+
+  iconLike.setAttribute("src", "img/like.svg");
+  iconUnicorn.setAttribute("src", "img/unicorn.svg");
+  iconExploading.setAttribute("src", "img/exploding-head.svg");
+  iconRaised.setAttribute("src", "img/raised-hands.svg");
+  iconFire.setAttribute("src", "img/fire.svg");
+
+  reactionsWrapper.append(
+    iconLike,
+    iconUnicorn,
+    iconExploading,
+    iconRaised,
+    iconFire,
+    reactionsNumber
+  );
+
+  let commentsWrapper = document.createElement("div");
+  commentsWrapper.classList.add(..."ractions__wrapper--comments".split(" "));
+  let iconComments = document.createElement("img");
+  iconComments.setAttribute("src", "img/comments.svg");
+  let commentsNumber = document.createElement("a");
+  commentsNumber.classList.add("text-decoration-none");
+  commentsNumber.textContent = `${sumaReacciones} reactions`;
+
+  commentsWrapper.append(iconComments, commentsNumber);
+
+  reactionsCommentsWrapper.append(reactionsWrapper, commentsWrapper);
+
   userWrapperImage.append(creatorImage);
-  userWrapperInfo.append(creatorUser, creationDate, postTitle, tagsWrapper);
+  userWrapperInfo.append(
+    creatorUser,
+    creationDate,
+    postTitle,
+    tagsWrapper,
+    reactionsCommentsWrapper
+  );
   postInfoWrapper.append(userWrapperImage, userWrapperInfo);
   cardBody.append(postInfoWrapper);
-  divCard.append(postImage, cardBody);
+  postImageLink.append(postImage);
+  divCard.append(postImageLink, cardBody);
 
-  //console.log(reactions);
+  console.log(postObject);
   return divCard;
 };
 
@@ -169,7 +232,7 @@ const createDiscussCard = (tag) => {
 };
 
 const createPostDiscussion = (postObject) => {
-  let { content, title } = postObject;
+  let { key, title } = postObject;
 
   let itemPost = document.createElement("li");
   itemPost.classList.add(
@@ -177,6 +240,7 @@ const createPostDiscussion = (postObject) => {
   );
 
   let titleContainer = document.createElement("a");
+  titleContainer.setAttribute("href", `post-detail.html?postKey=${key}`);
   titleContainer.textContent = title;
 
   let comments = document.createElement("a");

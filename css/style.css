@@ -12187,4 +12187,32 @@ body {
 .form__addingPost input[type=date]:focus,
 .form__addingPost textarea:focus {
   box-shadow: none;
+}
+
+.reactions__wrapper .ractions__wrapper--reaction {
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  font-size: 0.75rem;
+}
+.reactions__wrapper .ractions__wrapper--reaction:hover {
+  background-color: rgba(23, 23, 23, 0.03);
+}
+.reactions__wrapper .ractions__wrapper--reaction img {
+  width: 24px;
+  background-color: rgb(245, 245, 245);
+  border: 2px solid rgb(245, 245, 245);
+  border-radius: 15px;
+  display: inline-block;
+  margin-left: -0.5rem;
+}
+.reactions__wrapper .ractions__wrapper--reaction a {
+  color: rgb(64, 64, 64) !important;
+  margin-left: 0.25rem;
+}
+.reactions__wrapper .ractions__wrapper--comments {
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+}
+.reactions__wrapper .ractions__wrapper--comments:hover {
+  background-color: rgba(23, 23, 23, 0.03);
 }/*# sourceMappingURL=style.css.map */
