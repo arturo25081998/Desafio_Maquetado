@@ -10,6 +10,20 @@ const getAllPosts = async () => {
   return postArray;
 };
 
+const getAllComments = async (postKey) => {
+  let response = await fetch(`${BASE_URL}/${postKey}/comments/.json`);
+  let data = await response.json();
+  console.log(data);
+  if (data === null) {
+    return null;
+  } else {
+    let keysArray = Object.keys(data);
+    let commentsArray = keysArray.map((key) => ({ ...data[key], key }));
+    //console.log(commentsArray);
+    return commentsArray;
+  }
+};
+
 const uploadPost = async (postObject) => {
   let response = await fetch(`${BASE_URL}/.json`, {
     method: "POST",
@@ -20,4 +34,19 @@ const uploadPost = async (postObject) => {
   return data;
 };
 
-export { getAllPosts, uploadPost };
+const getPostByKey = async (postKey) => {
+  let response = await fetch(`${BASE_URL}/${postKey}/.json`);
+  let data = await response.json();
+  return data;
+};
+
+const uploadComment = async (comment, postKey) => {
+  let response = await fetch(`${BASE_URL}/${postKey}/comments/.json`, {
+    method: "POST",
+    body: JSON.stringify(comment),
+  });
+  let data = await response.json();
+  return data;
+};
+
+export { getAllPosts, uploadPost, getPostByKey, uploadComment, getAllComments };

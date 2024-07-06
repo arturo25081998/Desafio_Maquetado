@@ -11977,6 +11977,10 @@ textarea.form-control-lg {
   margin-top: 4.3rem;
 }
 
+.mt-9 {
+  margin-top: 5rem;
+}
+
 .mt-10 {
   margin-top: 1rem;
 }
@@ -12043,6 +12047,18 @@ body {
 }
 .user__wrapper--comment {
   background-color: rgb(245, 245, 245);
+}
+.user__wrapper--creator img {
+  width: 50px;
+}
+.user__wrapper--creator a:first-child {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: rgb(64, 64, 64);
+}
+.user__wrapper--creator a:nth-child(2) {
+  font-size: 0.7rem;
+  color: #717171;
 }
 .user__wrapper--info a:first-child {
   text-decoration: none;

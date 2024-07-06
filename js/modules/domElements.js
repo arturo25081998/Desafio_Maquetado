@@ -250,10 +250,58 @@ const createPostDiscussion = (postObject) => {
   return itemPost;
 };
 
+const createComment = (comment) => {
+  let { content, user, image, date } = comment;
+  let divCol = document.createElement("div");
+  divCol.classList.add("col-sm-12");
+
+  let divContainer = document.createElement("div");
+  divContainer.classList.add(..."row ms-3 mt-3".split(" "));
+
+  let colImage = document.createElement("div");
+  colImage.classList.add(..."col-sm-1".split(" "));
+
+  let userImage = document.createElement("img");
+  userImage.classList.add("rounded-circle");
+  userImage.setAttribute("src", image);
+  userImage.setAttribute("width", "36px");
+
+  let colComment = document.createElement("div");
+  colComment.classList.add(..."col-sm-11".split(" "));
+
+  let card = document.createElement("div");
+  card.classList.add(..."card w-100".split(" "));
+
+  let cardBody = document.createElement("div");
+  cardBody.classList.add(..."card-body".split(" "));
+
+  let userName = document.createElement("h6");
+  userName.classList.add(..."mb-2 fw-normal text-dark".split(" "));
+  userName.textContent = user;
+
+  let commentDate = document.createElement("span");
+  commentDate.classList.add("fw-light");
+  commentDate.textContent = ` • ${date}`;
+
+  let commentContainer = document.createElement("p");
+  commentContainer.textContent = content;
+
+  userName.append(commentDate);
+  cardBody.append(userName, commentContainer);
+  card.append(cardBody);
+  colComment.append(card);
+  colImage.append(userImage);
+  divContainer.append(colImage, colComment);
+  divCol.append(divContainer);
+
+  return divCol;
+};
+
 export {
   createNavLiks,
   createCardIsLogged,
   createPostCard,
   createDiscussCard,
   createPostDiscussion,
+  createComment,
 };

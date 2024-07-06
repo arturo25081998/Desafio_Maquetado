@@ -19,4 +19,23 @@ const createReactions = () => {
   return reactions;
 };
 
-export { isLogged, evaluateInput, createReactions };
+const getRandomUser = (array) => {
+  const indice = Math.floor(Math.random() * array.length);
+  return array[indice];
+};
+
+const getRandomDate = () => {
+  let today = new Date();
+  let randomDays = Math.floor(Math.random() * 90);
+  let randomDate = new Date(today);
+  randomDate.setDate(today.getDate() - randomDays);
+  return randomDate;
+};
+
+export {
+  isLogged,
+  evaluateInput,
+  createReactions,
+  getRandomUser,
+  getRandomDate,
+};
