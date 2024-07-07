@@ -11965,8 +11965,52 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-* {
-  font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "TeXGyreHerosCnBold", "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif;
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.mt-8 {
+  margin-top: 4.3rem;
+}
+
+.mt-9 {
+  margin-top: 5rem;
+}
+
+.mt-10 {
+  margin-top: 1rem;
+}
+
+.fs-7 {
+  font-size: 1.2rem;
+}
+
+.fs-8 {
+  font-size: 0.8rem;
+}
+
+.fs-9 {
+  font-size: 1rem;
+}
+
+.fs-10 {
+  font-size: 1.875rem;
+}
+
+.ms-8 {
+  margin-left: 6rem;
+}
+
+.-mt-1 {
+  margin-top: -1rem;
+}
+
+.bg-gray-1 {
+  background-color: #f9f9f9;
 }
 
 body {
@@ -12009,12 +12053,28 @@ body {
   color: rgb(47, 58, 178);
 }
 
+.tag-s:hover {
+  color: red;
+}
+
 .user__wrapper--image img {
   width: 32px;
   margin-right: 0.5rem;
 }
 .user__wrapper--comment {
   background-color: rgb(245, 245, 245);
+}
+.user__wrapper--creator img {
+  width: 50px;
+}
+.user__wrapper--creator a:first-child {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: rgb(64, 64, 64);
+}
+.user__wrapper--creator a:nth-child(2) {
+  font-size: 0.7rem;
+  color: #717171;
 }
 .user__wrapper--info a:first-child {
   text-decoration: none;
@@ -12041,6 +12101,15 @@ body {
 .user__wrapper--info a:nth-child(3):hover {
   color: rgb(47, 58, 178);
 }
+.user__wrapper--comment a {
+  text-decoration: none;
+  font-size: 0.875rem;
+  color: rgb(64, 64, 64);
+}
+.user__wrapper--comment p {
+  font-size: 0.875rem;
+  font-weight: 200;
+}
 
 .btn-trend {
   color: rgb(64, 64, 64);
@@ -12061,6 +12130,9 @@ body {
   width: 100%;
   text-align: left;
 }
+.list__wrapper--item a label {
+  font-size: 0.875rem;
+}
 .list__wrapper--item a:hover {
   background-color: rgba(59, 73, 223, 0.1);
   color: rgb(47, 58, 178);
@@ -12078,6 +12150,7 @@ body {
 
 .btn__special {
   border: none;
+  padding: 0.4rem !important;
 }
 .btn__special:hover {
   background-color: rgba(59, 73, 223, 0.1) !important;
@@ -12085,25 +12158,13 @@ body {
   border: none;
 }
 
-.ml-1 {
-  margin-left: 1rem;
-}
-
-.mr-1 {
-  margin-right: 1rem;
-}
-
-.mt-8 {
-  margin-top: 4rem;
-}
-
-.fs-7 {
-  font-size: 1.4rem;
+.text-justify {
+  text-align: justify;
 }
 
 .nav__search {
-  border: 1px solid #d6d6d7;
-  border-radius: 0.2rem;
+  border: 2px solid #d6d6d7;
+  border-radius: 0.5rem;
 }
 .nav__search input[type=text],
 .nav__search input[type=text]:focus-visible {
@@ -12120,4 +12181,70 @@ body {
 }
 .nav__search:hover {
   border: 2px solid rgb(47, 58, 178);
+}
+
+.card__post .post-picture {
+  display: none;
+}
+.card__post:first-child .post-picture {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .registration {
+    margin: 0 auto;
+    width: 640px;
+    padding: 3rem;
+  }
+}
+.registration img {
+  height: 48px;
+  width: auto;
+}
+.registration .registration__socials button {
+  height: 50px;
+  color: black;
+  border: rgb(212, 212, 212) solid 1px;
+}
+.registration .registration__socials button:hover {
+  background-color: rgb(245, 245, 245);
+  color: black;
+}
+
+.tools__wrapper {
+  background-color: #f9f9f9;
+}
+
+.form__addingPost input[type=text]:focus,
+.form__addingPost input[type=date]:focus,
+.form__addingPost textarea:focus {
+  box-shadow: none;
+}
+
+.reactions__wrapper .ractions__wrapper--reaction {
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  font-size: 0.75rem;
+}
+.reactions__wrapper .ractions__wrapper--reaction:hover {
+  background-color: rgba(23, 23, 23, 0.03);
+}
+.reactions__wrapper .ractions__wrapper--reaction img {
+  width: 24px;
+  background-color: rgb(245, 245, 245);
+  border: 2px solid rgb(245, 245, 245);
+  border-radius: 15px;
+  display: inline-block;
+  margin-left: -0.5rem;
+}
+.reactions__wrapper .ractions__wrapper--reaction a {
+  color: rgb(64, 64, 64) !important;
+  margin-left: 0.25rem;
+}
+.reactions__wrapper .ractions__wrapper--comments {
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+}
+.reactions__wrapper .ractions__wrapper--comments:hover {
+  background-color: rgba(23, 23, 23, 0.03);
 }/*# sourceMappingURL=style.css.map */
