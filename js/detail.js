@@ -251,6 +251,9 @@ const printComments = async (wrapperId) => {
     commentsWrapper.removeChild(commentsWrapper.firstChild);
   }
   if (commentsArray !== null) {
+    commentsArray = commentsArray.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
     commentsArray.forEach((commentItem) => {
       let commentElement = createComment(commentItem);
       commentsWrapper.append(commentElement);
