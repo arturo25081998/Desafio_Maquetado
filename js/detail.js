@@ -149,6 +149,11 @@ let commentInput = document.getElementById("comment-info");
 let tagsToDiscuss = ["css", "javascript", "html"];
 let postsArray = await getAllPosts();
 let commentData = {};
+let formUploadingPOst = document.getElementById("form-upload-comment");
+
+if (alredyLogged) {
+  formUploadingPOst.classList.remove("d-none");
+}
 
 commentInput.addEventListener("keyup", (event) => {
   //alert("hola");
