@@ -12001,6 +12001,18 @@ textarea.form-control-lg {
   font-size: 1.875rem;
 }
 
+.ms-8 {
+  margin-left: 6rem;
+}
+
+.-mt-1 {
+  margin-top: -1rem;
+}
+
+.bg-gray-1 {
+  background-color: #f9f9f9;
+}
+
 body {
   background-color: rgb(245, 245, 245);
 }
@@ -12039,6 +12051,10 @@ body {
 }
 .list__item--post:hover a:first-child {
   color: rgb(47, 58, 178);
+}
+
+.tag-s:hover {
+  color: red;
 }
 
 .user__wrapper--image img {

@@ -4,11 +4,17 @@ import {
   getRandomUser,
   getRandomDate,
 } from "./modules/utils.js";
-import { createNavLiks, createComment } from "./modules/domElements.js";
+import {
+  createNavLiks,
+  createComment,
+  createPostDiscussion,
+  createDiscussCard,
+} from "./modules/domElements.js";
 import {
   getPostByKey,
   uploadComment,
   getAllComments,
+  getAllPosts,
 } from "./modules/apiPosts.js";
 
 let users = [
@@ -140,7 +146,8 @@ let params = new URLSearchParams(urlObject.search);
 let postKey = params.get("postKey");
 let uploadCommentButton = document.getElementById("button-upload-comment");
 let commentInput = document.getElementById("comment-info");
-
+let tagsToDiscuss = ["css", "javascript", "html"];
+let postsArray = await getAllPosts();
 let commentData = {};
 
 commentInput.addEventListener("keyup", (event) => {
@@ -166,26 +173,37 @@ uploadCommentButton.addEventListener("click", async () => {
     commentData["user"] = user.name;
     commentData["image"] = user.image;
     commentData["date"] = getRandomDate();
-    let response = await uploadComment(commentData, postKey);
-    if (response !== null) {
-      printComments("comments-wrapper");
-      commentInput.value = null;
-      commentInput.classList.remove("is-valid");
-      commentData["content"] = "";
+    if (alredyLogged) {
+      //alert("esta enviando el comentario");
+      let response = await uploadComment(commentData, postKey);
+      if (response !== null) {
+        printComments("comments-wrapper");
+        commentInput.value = null;
+        commentInput.classList.remove("is-valid");
+        commentData["content"] = "";
+      }
+    } else {
+      alert("Necesitas iniciar sesion para comentar.");
     }
+
     //console.log(response);
   }
 });
 
 const printPostDetails = async () => {
   let postData = await getPostByKey(postKey);
-  let { content, title, reactions, image, tags } = postData;
+  let { content, title, reactions, image, tags, date } = postData;
   let tagsWrapper = document.getElementById("tags-wrapper");
   let totalReactions = 0;
+
+  date = new Date(date);
+  let options = { month: "short", day: "numeric", year: "numeric" };
+  let resetDate = Intl.DateTimeFormat("en-US", options).format(date);
 
   document.getElementById("post-image").setAttribute("src", image);
   document.getElementById("post-title").textContent = title;
   document.getElementById("post-content").textContent = content;
+  document.getElementById("post-date").textContent = resetDate;
 
   while (tagsWrapper.firstChild) {
     tagsWrapper.removeChild(tagsWrapper.firstChild);
@@ -244,6 +262,29 @@ const printComments = async (wrapperId) => {
   document.getElementById("summary-comments").textContent = totalComments;
 };
 
+const createDiscussCards = (wrapperId, tags) => {
+  let cardsWrapper = document.getElementById(wrapperId);
+  while (cardsWrapper.firstChild) {
+    cardsWrapper.removeChild(cardsWrapper.firstChild);
+  }
+  tags.forEach((tag) => {
+    let discussCard = createDiscussCard(tag);
+    cardsWrapper.append(discussCard);
+    let listWrapperTag = document.getElementById(`discuss-${tag}`);
+    let postsWithTag = postsArray.filter((post) => post.tags.includes(tag));
+    postsWithTag = postsWithTag.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    //console.log(postsWithTag);
+    postsWithTag = postsWithTag.slice(0, 5);
+    postsWithTag.forEach((post) => {
+      let discussionPost = createPostDiscussion(post);
+      listWrapperTag.append(discussionPost);
+    });
+  });
+};
+
 printComments("comments-wrapper");
 printPostDetails();
+createDiscussCards("discussion-tags", tagsToDiscuss);
 createNavLiks(alredyLogged, "nav-links-wrapper");

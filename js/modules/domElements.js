@@ -11,7 +11,10 @@ const createNavLiks = (isLogged, wrapperId) => {
     notificationButton.classList.add(
       ..."btn btn-light btn__special bg-white".split(" ")
     );
-    notificationButton.textContent = "Notification";
+    let notificationImage = document.createElement("img");
+    notificationImage.setAttribute("src", "img/notification.svg");
+
+    notificationButton.append(notificationImage);
 
     let logOutButton = document.createElement("button");
     logOutButton.classList.add(..."btn btn-outline-danger".split(" "));
@@ -88,7 +91,29 @@ const createCardIsLogged = (isLogged, wrapperId) => {
 };
 
 const createPostCard = (postObject) => {
-  let { content, date, image, reactions, tags, title, key } = postObject;
+  let { date, image, reactions, tags, title, key, comments } = postObject;
+  let commentsArray = [];
+  let totalComments = 0;
+  if (comments !== undefined) {
+    totalComments = Object.keys(comments).length;
+    commentsArray = Object.values(comments).map((comment) => ({
+      ...comment,
+      date: new Date(comment.date),
+    }));
+
+    commentsArray = commentsArray.map((comment) => {
+      let now = new Date();
+      let commentDate = new Date(comment.date);
+      let timeDiff = now - commentDate;
+      let hoursDiff = timeDiff / (1000 * 60 * 60);
+      return { ...comment, hoursDifference: hoursDiff };
+    });
+
+    commentsArray = commentsArray.filter(
+      (comment) => comment.hoursDifference < 24
+    );
+    console.log(commentsArray);
+  }
 
   let sumaReacciones = postObject.reactions.reduce(
     (total, reaccion) => total + reaccion.quantity,
@@ -128,7 +153,10 @@ const createPostCard = (postObject) => {
   creatorUser.textContent = "Arturo Juarez";
 
   let creationDate = document.createElement("a");
-  creationDate.textContent = date;
+  date = new Date(date);
+  let options = { month: "short", day: "numeric", year: "numeric" };
+  let resetDate = Intl.DateTimeFormat("en-US", options).format(date);
+  creationDate.textContent = resetDate;
 
   let postTitle = document.createElement("a");
   postTitle.setAttribute("href", `post-detail.html?postKey=${key}`);
@@ -162,6 +190,7 @@ const createPostCard = (postObject) => {
   let reactionsNumber = document.createElement("a");
   reactionsNumber.classList.add("text-decoration-none");
   reactionsNumber.textContent = `${sumaReacciones} reactions`;
+  reactionsNumber.setAttribute("href", `post-detail.html?postKey=${key}`);
 
   iconLike.setAttribute("src", "img/like.svg");
   iconUnicorn.setAttribute("src", "img/unicorn.svg");
@@ -184,7 +213,8 @@ const createPostCard = (postObject) => {
   iconComments.setAttribute("src", "img/comments.svg");
   let commentsNumber = document.createElement("a");
   commentsNumber.classList.add("text-decoration-none");
-  commentsNumber.textContent = `${sumaReacciones} reactions`;
+  commentsNumber.textContent = `${totalComments} comments`;
+  commentsNumber.setAttribute("href", `post-detail.html?postKey=${key}`);
 
   commentsWrapper.append(iconComments, commentsNumber);
 
@@ -203,7 +233,43 @@ const createPostCard = (postObject) => {
   postImageLink.append(postImage);
   divCard.append(postImageLink, cardBody);
 
-  console.log(postObject);
+  if (comments !== undefined) {
+    commentsArray.forEach((comment) => {
+      let divComment = document.createElement("div");
+      divComment.classList.add("user__wrapper", "d-flex", "mb-3");
+
+      let wrapperImage = document.createElement("div");
+      wrapperImage.classList.add("user__wrapper--image");
+
+      let userImage = document.createElement("img");
+      userImage.classList.add("rounded-circle");
+      userImage.setAttribute("src", comment.image);
+
+      let wrapperComment = document.createElement("div");
+      wrapperComment.classList.add(
+        ..."user__wrapper--comment d-flex flex-column w-100 rounded p-2".split(
+          " "
+        )
+      );
+      let userName = document.createElement("a");
+      userName.textContent = comment.user;
+
+      let hours = document.createElement("span");
+      hours.textContent = `  ${parseInt(comment.hoursDifference)} Hours ago`;
+      hours.classList.add("fw-light", "text-body-tertiary", "fs-8", "ms-1");
+      userName.append(hours);
+
+      let content = document.createElement("p");
+      content.textContent = comment.content;
+
+      wrapperComment.append(userName, content);
+      wrapperImage.append(userImage);
+      divComment.append(wrapperImage, wrapperComment);
+      //console.log(divComment);
+      cardBody.append(divComment);
+    });
+  }
+  //console.log(postObject);
   return divCard;
 };
 
@@ -232,7 +298,12 @@ const createDiscussCard = (tag) => {
 };
 
 const createPostDiscussion = (postObject) => {
-  let { key, title } = postObject;
+  let { key, title, comments } = postObject;
+  let totalComments = 0;
+  if (comments !== undefined) {
+    totalComments = Object.keys(comments).length;
+    //console.log(totalComments);
+  }
 
   let itemPost = document.createElement("li");
   itemPost.classList.add(
@@ -243,10 +314,11 @@ const createPostDiscussion = (postObject) => {
   titleContainer.setAttribute("href", `post-detail.html?postKey=${key}`);
   titleContainer.textContent = title;
 
-  let comments = document.createElement("a");
-  comments.textContent = "20 comments";
+  let commentsNumber = document.createElement("a");
+  commentsNumber.textContent = `${totalComments} comments`;
+  commentsNumber.setAttribute("href", `post-detail.html?postKey=${key}`);
 
-  itemPost.append(titleContainer, comments);
+  itemPost.append(titleContainer, commentsNumber);
   return itemPost;
 };
 
@@ -259,7 +331,7 @@ const createComment = (comment) => {
   divContainer.classList.add(..."row ms-3 mt-3".split(" "));
 
   let colImage = document.createElement("div");
-  colImage.classList.add(..."col-sm-1".split(" "));
+  colImage.classList.add(..."col-1".split(" "));
 
   let userImage = document.createElement("img");
   userImage.classList.add("rounded-circle");
@@ -267,7 +339,7 @@ const createComment = (comment) => {
   userImage.setAttribute("width", "36px");
 
   let colComment = document.createElement("div");
-  colComment.classList.add(..."col-sm-11".split(" "));
+  colComment.classList.add(..."col-11".split(" "));
 
   let card = document.createElement("div");
   card.classList.add(..."card w-100".split(" "));
@@ -280,11 +352,42 @@ const createComment = (comment) => {
   userName.textContent = user;
 
   let commentDate = document.createElement("span");
-  commentDate.classList.add("fw-light");
-  commentDate.textContent = ` • ${date}`;
+  commentDate.classList.add("fw-light", "fs-8");
+  date = new Date(date);
+  let options = { month: "short", day: "numeric", year: "numeric" };
+  let resetDate = Intl.DateTimeFormat("en-US", options).format(date);
+  commentDate.textContent = ` • ${resetDate}`;
 
   let commentContainer = document.createElement("p");
+  commentContainer.classList.add("mb-0");
   commentContainer.textContent = content;
+
+  let divButtons = document.createElement("div");
+  divButtons.classList.add(..."ms-8 mt-1 d-flex gap-3".split(" "));
+
+  let likeButton = document.createElement("a");
+  likeButton.classList.add("text-decoration-none");
+  let likeImage = document.createElement("img");
+  likeImage.setAttribute("src", "img/like-button.svg");
+  let likeText = document.createElement("span");
+  likeText.textContent = "Like";
+  likeText.classList.add("text-decoration-none", "fs-8", "text-body-secondary");
+
+  let commentButton = document.createElement("a");
+  commentButton.classList.add("text-decoration-none");
+  let commentImage = document.createElement("img");
+  commentImage.setAttribute("src", "img/comment-button.svg");
+  let commentText = document.createElement("span");
+  commentText.textContent = "Reply";
+  commentText.classList.add(
+    "text-decoration-none",
+    "fs-8",
+    "text-body-secondary"
+  );
+
+  commentButton.append(commentImage, commentText);
+  likeButton.append(likeImage, likeText);
+  divButtons.append(likeButton, commentButton);
 
   userName.append(commentDate);
   cardBody.append(userName, commentContainer);
@@ -292,7 +395,7 @@ const createComment = (comment) => {
   colComment.append(card);
   colImage.append(userImage);
   divContainer.append(colImage, colComment);
-  divCol.append(divContainer);
+  divCol.append(divContainer, divButtons);
 
   return divCol;
 };

@@ -140,7 +140,7 @@
           <div class="publications-wrapper" id="posts-wrapper">
             <div class="card card__post w-100 mb-4">
               <img
-                src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fivsygiubvfu4y1li5mu9.png"
+                src=""
                 class="card-img-top post-picture"
                 alt="..."
                 id="post-image"
@@ -151,7 +151,7 @@
                     <img class="rounded-circle" src="img/profile.jpg" alt="" />
                     <div class="creator-info d-flex flex-column">
                       <a href="" class="text-decoration-none">Lowlighter</a>
-                      <a href="" class="text-decoration-none"
+                      <a href="" class="text-decoration-none" id="post-date"
                         >May 24 (1 day ago)</a
                       >
                     </div>
@@ -231,7 +231,7 @@
                   Top comments (<span id="total-comments"></span>)
                 </h2>
                 <div class="mb-3 row ms-3 mt-3">
-                  <div class="col-sm-1 col-form">
+                  <div class="col-1 col-form">
                     <img
                       src="img/profile.jpg"
                       class="rounded-circle"
@@ -239,7 +239,7 @@
                       alt=""
                     />
                   </div>
-                  <div class="col-sm-11">
+                  <div class="col-11">
                     <textarea
                       rows="3"
                       class="form-control mb-2"
@@ -261,39 +261,29 @@
             <!--Active discussions-->
             <div class="card w-100">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item list__item--title">
-                  <h5>Active discussions</h5>
+                <li class="list-group-item list__item--title bg-dark pb-3"></li>
+                <li class="d-flex ms-3 align-items-end gap-2 -mt-1 z-2 mb-2">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/36.jpg"
+                    width="45px"
+                    class="rounded-circle"
+                    alt=""
+                  />
+                  <h6>Arturo Juarez</h6>
                 </li>
-                <li class="list-group-item list__item--post d-flex flex-column">
-                  <a href="">Practical Async JavaScript</a>
-                  <a href="" class="mt-1 mb-2">12 comments</a>
+                <li class="d-flex ms-3 me-3 align-items-end gap-2 mb-3">
+                  <button class="btn btn-primary w-100">Follow</button>
                 </li>
-                <li class="list-group-item list__item--post d-flex flex-column">
-                  <a href="">
-                    Create your Biography Web Page with AWS Amplify Gen 2
-                  </a>
-                  <a href="" class="mt-1 mb-2">15 comments</a>
-                </li>
-                <li class="list-group-item list__item--post d-flex flex-column">
-                  <a href="">
-                    Introducing Rocketicons: The Perfect Companion for React and
-                    Tailwind CSS Developers
-                  </a>
-                  <a href="" class="mt-1 mb-2">3 comments</a>
-                </li>
-                <li class="list-group-item list__item--post d-flex flex-column">
-                  <a href="">
-                    ng-amplify Angular Fullstack App with AWS Amplify Gen 2
-                  </a>
-                  <a href="" class="mt-1 mb-2">1 comment</a>
-                </li>
-                <li class="list-group-item list__item--post d-flex flex-column">
-                  <a href="">
-                    A job seeker journal application built with AWS Amplify Gen
-                    2
-                  </a>
-                  <a href="" class="mt-1 mb-2">2 comments</a>
-                </li>
+                <p class="me-3 ms-3 fs-8">
+                  Buildin a job board for remote-first devs. Waiting list on ->
+                  devsonremote.com
+                </p>
+                <p class="me-3 ms-3 fs-8">
+                  <span class="fw-bold">Location :</span> Remote <br />
+                </p>
+                <p class="me-3 ms-3 fs-8">
+                  <span class="fw-bold">Joined:</span> Sep 22, 2021<br />
+                </p>
               </ul>
             </div>
             <!--Discuss-->

@@ -45,10 +45,13 @@ postInfo.forEach((input) => {
 const createTag = (tagValue, wrapperId) => {
   let wrapper = document.getElementById(wrapperId);
   let tag = document.createElement("span");
-  tag.classList.add(..."badge text-bg-secondary me-1".split(" "));
+  tag.classList.add(
+    ..."badge text-body-emphasis fw-normal bg-gray-1 fs-6 me-1".split(" ")
+  );
   tag.textContent = `# ${tagValue}`;
 
   let deleteTagButton = document.createElement("button");
+  deleteTagButton.classList.add("ms-1", "btn", "btn-sm", "tag-s");
   deleteTagButton.setAttribute("type", "button");
   deleteTagButton.textContent = "X";
   deleteTagButton.addEventListener("click", (event) => {
@@ -79,7 +82,7 @@ tagInput.addEventListener("keydown", (event) => {
           postData.tags.push(value);
           createTag(value, "tags-wrapper");
         } else {
-          alert("ya existe");
+          //alert("ya existe");
         }
       }
       document.getElementById(id).value = null;
@@ -88,7 +91,7 @@ tagInput.addEventListener("keydown", (event) => {
   }
 });
 
-uploadPostButton.addEventListener("click", () => {
+uploadPostButton.addEventListener("click", async () => {
   if (
     evaluateInput(postData.title) &&
     evaluateInput(postData.content) &&
@@ -97,9 +100,12 @@ uploadPostButton.addEventListener("click", () => {
     evaluateInput(postData.tags)
   ) {
     postData["reactions"] = createReactions();
-    alert("Subir post");
-    uploadPost(postData);
-    //window.location.href = "index.html";
+    //alert("Subir post");
+    let response = await uploadPost(postData);
+    if (response !== null) {
+      window.location.href = "index.html";
+      //alert("se subio el post");
+    }
   } else {
     alert("Faltan campos");
   }

@@ -88,6 +88,6 @@ const createDiscussCards = (wrapperId, tags) => {
 };
 
 createDiscussCards("discussion-tags", tagsToDiscuss);
-addPostCards("posts-wrapper", postsArray);
+addPostCards("posts-wrapper", postsArray.reverse());
 createNavLiks(alredyLogged, "nav-links-wrapper");
 createCardIsLogged(alredyLogged, "login-Card-Wrapper");
